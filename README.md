@@ -4,7 +4,7 @@ An explainable, evolution-inspired landing-page experimentation lab that simulat
 
 ## Live Demo
 
-Live demo: [add deployment URL]
+Live demo: https://growthos-plum.vercel.app
 
 ## What It Does
 
