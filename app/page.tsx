@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { VARIANTS } from '@/lib/variants';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
@@ -92,8 +93,15 @@ export default function Home() {
   return (
     <div className="flex-1 overflow-hidden bg-background">
       <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-        <Link href="/" className="font-display text-lg font-medium tracking-tight">
-          GrowthOS
+        <Link href="/" aria-label="GrowthOS" className="inline-flex items-center">
+          <Image
+            src="/brand/growthos-wordmark.png"
+            alt="GrowthOS"
+            width={146}
+            height={63}
+            priority
+            className="h-9 w-auto object-contain"
+          />
         </Link>
 
         <Link href="/lab">

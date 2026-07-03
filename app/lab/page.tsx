@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import confetti from 'canvas-confetti';
 import { VARIANTS, type Variant } from '@/lib/variants';
 import { simulateAll, simulateVariant, type VariantSimulationResult } from '@/lib/simulation';
@@ -101,8 +102,14 @@ export default function LabPage() {
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-30 border-b border-hairline bg-background/90 backdrop-blur px-6 py-3 flex items-center justify-between gap-4 flex-wrap">
         <div className="flex items-center gap-3">
-          <Link href="/" className="font-display font-medium text-sm">
-            GrowthOS
+          <Link href="/" aria-label="GrowthOS" className="inline-flex items-center">
+            <Image
+              src="/brand/growthos-wordmark.png"
+              alt="GrowthOS"
+              width={124}
+              height={54}
+              className="h-8 w-auto object-contain"
+            />
           </Link>
           <span className="text-graphite-soft text-sm">▸ Scholé AI experiment</span>
           <span className="hidden max-w-xs font-mono text-[10px] uppercase tracking-wider text-graphite-soft md:inline">
