@@ -202,7 +202,13 @@ export default function LabPage() {
             <UrgencyTradeoffCard insight={evoResult.insights.find((insight) => insight.principle === 'urgency')} />
 
             <Card className="p-5 mb-6">
-              <EvolutionTree gen2={evoResult.gen2} variants={VARIANTS} />
+              <EvolutionTree
+                gen2={evoResult.gen2}
+                variants={VARIANTS}
+                metrics={gen1Metrics ?? []}
+                insights={evoResult.insights}
+                mutations={evoResult.mutations}
+              />
             </Card>
 
             <Card className="p-5 mb-6">
@@ -254,6 +260,18 @@ export default function LabPage() {
               <MetricsDashboard metrics={validationMetrics} variants={allVariantsWithGen2} />
             </Card>
             <ValidationVerdict metrics={validationMetrics} />
+            {evoResult && gen1Metrics && (
+              <Card className="mt-6 p-5">
+                <EvolutionTree
+                  gen2={evoResult.gen2}
+                  variants={VARIANTS}
+                  metrics={gen1Metrics}
+                  insights={evoResult.insights}
+                  mutations={evoResult.mutations}
+                  validationMetrics={validationMetrics}
+                />
+              </Card>
+            )}
             {evoResult && (
               <BeforeAfterArtifact
                 metrics={validationMetrics}
