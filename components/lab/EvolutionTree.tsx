@@ -46,17 +46,17 @@ export function EvolutionTree({
       <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
         <div>
           <p className="font-mono text-xs uppercase tracking-wider text-graphite-soft">Page Evolution Map</p>
-          <h2 className="mt-1 font-display text-2xl font-medium">Gen 2 inherits the strongest page traits</h2>
+          <h2 className="mt-1 font-display text-2xl font-medium">The Evolved Candidate inherits the strongest page traits</h2>
           <p className="mt-1 max-w-2xl text-sm text-graphite-soft">
-            Gen 2 inherits the strongest page traits from experiment evidence, not intuition.
+            The Evolved Candidate inherits the strongest page traits from experiment evidence, not intuition.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-2 text-right">
           <MetricPill
-            label="Gen 1 champion"
+            label="Gen 0 champion"
             value={champion ? `${championVariant?.id ?? champion.variantId} · ${champion.fitness?.toFixed(1)}` : 'pending'}
           />
-          <MetricPill label="Gen 2 fitness" value={gen2Metric ? gen2Metric.fitness?.toFixed(1) ?? 'pending' : 'pending'} />
+          <MetricPill label="Evolved fitness" value={gen2Metric ? gen2Metric.fitness?.toFixed(1) ?? 'pending' : 'pending'} />
         </div>
       </div>
 
@@ -180,7 +180,7 @@ function VariantBlueprint({
                   {SECTION_LABEL[section.type]}
                 </p>
                 <p className="mt-1 font-mono text-[10px] text-graphite-soft">
-                  {sectionMetric ? `${sectionMetric.meanDwell.toFixed(1)}s · ${Math.round(sectionMetric.reachRate * 100)}%` : 'no dwell'}
+                  {sectionMetric ? `${sectionMetric.meanDwell.toFixed(1)}s · ${Math.round(sectionMetric.reachRate * 100)}%` : 'no attention data'}
                 </p>
               </div>
             </motion.div>
@@ -214,7 +214,7 @@ function EvolvedBlueprint({
     >
       <div className="mb-4 flex items-center justify-between gap-3">
         <div>
-          <Badge tone="accent">Gen 2</Badge>
+          <Badge tone="accent">Evolved Candidate</Badge>
           <p className="mt-2 font-display text-lg font-medium">{gen2.name}</p>
         </div>
         <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: gen2.theme.accent }} />
@@ -237,7 +237,7 @@ function EvolvedBlueprint({
                   style={{ backgroundColor: parent?.theme.accent ?? 'var(--accent)' }}
                 />
                 <p className="font-mono text-[10px] uppercase tracking-wider text-graphite-soft">
-                  {SECTION_LABEL[section.type]} from {section.provenance?.parent ?? 'Gen 2'}
+                  {SECTION_LABEL[section.type]} from {section.provenance?.parent ?? 'Evolved Candidate'}
                 </p>
               </div>
               <p className="mt-1 text-xs leading-relaxed text-graphite">{sectionReason(section, insights, mutations)}</p>

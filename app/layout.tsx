@@ -20,7 +20,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "GrowthOS — Scholé AI growth lab",
   description:
-    "A self-optimizing landing page lab: simulate persona-driven traffic across five hypotheses and evolve a winner from evidence.",
+    "An Evolutionary Conversion Lab: run behavioral stress tests, surface selection findings, and assemble an evidence-backed evolved candidate.",
 };
 
 export default function RootLayout({

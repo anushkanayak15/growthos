@@ -31,7 +31,7 @@ export function InsightCard({ insight, index }: { insight: Insight; index: numbe
       <div className="flex items-center justify-between gap-3 mb-4">
         <Badge tone="accent">{PRINCIPLE_LABEL[insight.principle]}</Badge>
         <span className="font-mono text-[11px] text-graphite-soft">
-          {insight.sourceVariant !== 'none' ? `source: ${insight.sourceVariant}` : ''}
+          {insight.sourceVariant !== 'none' ? `lineage source: ${insight.sourceVariant}` : ''}
         </span>
       </div>
       <div className="grid gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:items-start">

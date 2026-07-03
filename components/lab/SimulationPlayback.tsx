@@ -63,12 +63,12 @@ export function SimulationPlayback({
   return (
     <div className="max-w-3xl mx-auto py-16 px-6 text-center">
       <p className="font-mono text-xs uppercase tracking-wider text-graphite-soft">
-        experiment seed {seed}
+        behavioral stress test seed {seed}
       </p>
       <p className="font-display text-5xl font-medium tabular-nums mt-3">
         {usersShown.toLocaleString()}
       </p>
-      <p className="text-sm text-graphite-soft mt-1">users simulated across 5 variants</p>
+      <p className="text-sm text-graphite-soft mt-1">synthetic cohort visits across 5 Gen 0 Candidates</p>
 
       <div className="mt-6 h-2 rounded-full bg-hairline overflow-hidden max-w-md mx-auto">
         <motion.div

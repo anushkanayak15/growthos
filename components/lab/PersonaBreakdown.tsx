@@ -13,7 +13,7 @@ export function PersonaBreakdown({ metrics, variants }: { metrics: VariantMetric
         <thead>
           <tr>
             <th className="text-left font-mono text-xs uppercase tracking-wider text-graphite-soft font-normal pb-2 pr-4">
-              Persona
+              Cohort
             </th>
             {variants.map((v) => (
               <th key={v.id} className="text-center font-mono text-xs uppercase tracking-wider text-graphite-soft font-normal pb-2 px-2">

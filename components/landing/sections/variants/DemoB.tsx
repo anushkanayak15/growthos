@@ -73,7 +73,7 @@ export function DemoB({ section, theme }: { section: Section; theme: VariantThem
                   className="rounded-full px-5 py-2 text-sm font-mono transition-opacity hover:opacity-80"
                   style={{ background: `${theme.accent}30`, color: theme.accent, border: `1px solid ${theme.accent}50` }}
                 >
-                  ▶ play conversation
+                  Play conversation
                 </button>
               </div>
             )}

@@ -12,7 +12,7 @@ export function VariantThumb({ variant }: { variant: Variant }) {
         style={{ background: `linear-gradient(180deg, ${variant.theme.accent}14, transparent)` }}
       >
         <div className="flex items-center justify-between mb-3">
-          <Badge tone="neutral">Variant {variant.id}</Badge>
+          <Badge tone="neutral">Gen 0 Candidate {variant.id}</Badge>
           <span
             className="h-2.5 w-2.5 rounded-full"
             style={{ backgroundColor: variant.theme.accent }}
@@ -29,7 +29,7 @@ export function VariantThumb({ variant }: { variant: Variant }) {
         target="_blank"
         className="block text-center py-2.5 text-xs font-mono uppercase tracking-wider text-graphite-soft border-t border-hairline hover:text-graphite hover:bg-graphite/[0.03]"
       >
-        View full page →
+        View candidate page →
       </Link>
     </div>
   );

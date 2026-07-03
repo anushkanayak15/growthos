@@ -19,16 +19,17 @@ export function Heatmap({ metrics, variants }: { metrics: VariantMetrics[]; vari
             <div className="p-1.5 space-y-1">
               {variant.sections.map((section) => {
                 const dwell = m.sectionDwell[section.id]?.meanDwell ?? 0;
+                const reach = m.sectionDwell[section.id]?.reachRate ?? 0;
                 const intensity = maxDwell > 0 ? dwell / maxDwell : 0;
                 return (
                   <div
                     key={section.id}
-                    title={`${section.type}: ${dwell.toFixed(1)}s mean dwell`}
+                    title={`${section.type}: ${dwell.toFixed(1)}s mean attention, ${Math.round(reach * 100)}% reach`}
                     className="flex items-center justify-between rounded px-2 py-1 text-[11px] font-mono"
                     style={{ backgroundColor: `rgba(51, 85, 255, ${0.05 + intensity * 0.55})` }}
                   >
                     <span className="truncate text-graphite-soft">{section.type}</span>
-                    <span className="text-graphite tabular-nums">{dwell.toFixed(1)}s</span>
+                    <span className="text-graphite tabular-nums">{dwell.toFixed(1)}s · {Math.round(reach * 100)}%</span>
                   </div>
                 );
               })}

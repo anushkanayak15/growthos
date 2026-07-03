@@ -3,7 +3,14 @@ import { VARIANTS } from '@/lib/variants';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 
-const PIPELINE = ['Hypothesize', 'Simulate', 'Learn', 'Evolve', 'Validate'];
+const PIPELINE = [
+  'Gen 0 Candidates',
+  'Behavioral Stress Test',
+  'Attention Profiler',
+  'Selection Findings',
+  'Page Evolution Map',
+  'Validation Retest',
+];
 
 const PERSONAS = [
   {
@@ -39,11 +46,11 @@ const PERSONAS = [
 ];
 
 const PERSONA_FIT: Record<string, string> = {
-  A: 'Best bet: The Achiever',
-  B: 'Best bet: The Social Learner',
-  C: 'Best bet: The Skeptic',
-  D: 'Best bet: The Last-Minute',
-  E: 'Best bet: The Explorer',
+  A: 'Best cohort: The Achiever',
+  B: 'Best cohort: The Social Learner',
+  C: 'Best cohort: The Skeptic',
+  D: 'Best cohort: The Last-Minute',
+  E: 'Best cohort: The Explorer',
 };
 
 const TRADITIONAL_TESTING = [
@@ -55,9 +62,9 @@ const TRADITIONAL_TESTING = [
 
 const GROWTHOS_TESTING = [
   'Model behavior before spending traffic',
-  'Compare five distinct hypotheses',
+  'Compare five Gen 0 growth hypotheses',
   'Extract behavioral patterns immediately',
-  'Generate and validate a stronger next version',
+  'Generate and retest a stronger candidate',
 ];
 
 const INSIGHTS = [
@@ -101,45 +108,45 @@ export default function Home() {
               Product under test: Scholé AI
             </Badge>
             <p className="mb-4 max-w-xl font-mono text-[11px] uppercase tracking-[0.14em] text-graphite-soft">
-              Synthetic experiment data for demonstration — not real customer outcomes.
+              Synthetic behavioral experiment data for demonstration — not real customer outcomes.
             </p>
 
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.18em] text-graphite-soft">
-              Autonomous experimentation for growth teams
+              Evolutionary Conversion Lab
             </p>
 
             <h1 className="font-display text-5xl font-medium leading-[0.98] tracking-[-0.045em] md:text-6xl lg:text-7xl">
-              What if your landing page improved itself while you slept?
+              Run behavioral stress tests. Evolve a stronger page.
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-graphite-soft md:text-xl">
-              Launch 5 growth hypotheses. Simulate 50,000 students. Wake up with a better
-              page—built from the behavioral evidence, not a hunch.
+              GrowthOS stress-tests landing-page hypotheses against behavioral cohorts, learns
+              which traits earn attention and trust, then assembles a stronger next version.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
               <Link href="/lab">
-                <Button size="lg">▶ Run the growth experiment</Button>
+                <Button size="lg">Run Behavioral Stress Test</Button>
               </Link>
 
               <div className="flex items-center gap-2 text-sm text-graphite-soft">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-[#3457d5]" />
-                Seeded, deterministic simulation
+                Seeded, deterministic stress test
               </div>
             </div>
 
             <div className="mt-10 grid max-w-xl grid-cols-3 gap-3 border-t border-hairline pt-5">
               <div>
                 <p className="font-display text-2xl font-medium">5</p>
-                <p className="mt-1 text-xs text-graphite-soft">growth hypotheses</p>
+                <p className="mt-1 text-xs text-graphite-soft">Gen 0 hypotheses</p>
               </div>
               <div>
                 <p className="font-display text-2xl font-medium">50K</p>
-                <p className="mt-1 text-xs text-graphite-soft">simulated visitors</p>
+                <p className="mt-1 text-xs text-graphite-soft">synthetic cohort visits</p>
               </div>
               <div>
                 <p className="font-display text-2xl font-medium">1</p>
-                <p className="mt-1 text-xs text-graphite-soft">evolved Gen 2 page</p>
+                <p className="mt-1 text-xs text-graphite-soft">Evolved Candidate</p>
               </div>
             </div>
           </div>
@@ -152,7 +159,7 @@ export default function Home() {
                 <div className="flex items-center gap-2">
                   <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-[#66d17c]" />
                   <span className="font-mono text-xs uppercase tracking-[0.16em] text-white/60">
-                    Live experiment
+                    Behavioral stress test
                   </span>
                 </div>
                 <span className="font-mono text-[10px] uppercase tracking-wider text-white/45">
@@ -178,7 +185,7 @@ export default function Home() {
               <div className="my-4 flex items-center gap-3">
                 <div className="h-px flex-1 bg-white/10" />
                 <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/45">
-                  simulate
+                  stress test
                 </span>
                 <div className="h-px flex-1 bg-white/10" />
               </div>
@@ -190,7 +197,7 @@ export default function Home() {
                       Behavioral sample
                     </p>
                     <p className="mt-1 font-display text-3xl font-medium">50,000</p>
-                    <p className="text-sm text-white/55">persona-driven visits</p>
+                    <p className="text-sm text-white/55">behavioral cohort visits</p>
                   </div>
                   <div className="flex gap-1">
                     {[38, 64, 47, 84, 56, 92, 72].map((height, index) => (
@@ -207,7 +214,7 @@ export default function Home() {
               <div className="my-4 flex items-center gap-3">
                 <div className="h-px flex-1 bg-white/10" />
                 <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/45">
-                  learn + evolve
+                  select + evolve
                 </span>
                 <div className="h-px flex-1 bg-white/10" />
               </div>
@@ -215,9 +222,9 @@ export default function Home() {
               <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
                 <div className="rounded-xl border border-[#5c8b6a]/45 bg-[#2f6f4f]/20 p-3">
                   <p className="font-mono text-[10px] uppercase tracking-wider text-[#9cd6af]">
-                    Winner
+                    Gen 0 champion
                   </p>
-                  <p className="mt-1 font-display text-lg">Variant C</p>
+                  <p className="mt-1 font-display text-lg">Candidate C</p>
                   <p className="text-xs text-white/50">proof earns trust</p>
                 </div>
 
@@ -225,17 +232,17 @@ export default function Home() {
 
                 <div className="rounded-xl border border-[#8b7ee9]/50 bg-[#7c3aed]/20 p-3">
                   <p className="font-mono text-[10px] uppercase tracking-wider text-[#c2baff]">
-                    Gen 2
+                    Evolved Candidate
                   </p>
                   <p className="mt-1 font-display text-lg">Evolved</p>
-                  <p className="text-xs text-white/50">validated lift</p>
+                  <p className="text-xs text-white/50">validation retest</p>
                 </div>
               </div>
 
               <div className="mt-5 flex items-center justify-between rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3">
                 <span className="text-sm text-white/60">Result</span>
                 <span className="font-mono text-xs uppercase tracking-wider text-[#9cd6af]">
-                  Gen 2 beats its parents
+                  Evolved Candidate clears retest
                 </span>
               </div>
             </div>
@@ -289,7 +296,7 @@ export default function Home() {
                 </div>
 
                 <p className="mt-5 font-display text-2xl font-medium">
-                  Generate hypotheses. Simulate behavior. Ship a better bet.
+                  Generate hypotheses. Stress-test behavior. Ship a better bet.
                 </p>
 
                 <ul className="mt-6 space-y-3">
@@ -320,7 +327,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="mt-8 grid gap-3 md:grid-cols-5">
+          <div className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {PIPELINE.map((step, index) => (
               <div key={step} className="relative rounded-2xl border border-hairline bg-surface p-4">
                 <p className="font-mono text-xs text-graphite-soft">0{index + 1}</p>
@@ -329,10 +336,11 @@ export default function Home() {
                   {
                     [
                       'Frame each page as a behavioral bet.',
-                      'Model persona-driven visits at scale.',
-                      'Measure conversion and leading indicators.',
-                      'Extract the strongest behavioral signal.',
-                      'Validate a better page against the field.',
+                      'Model behavioral cohort visits at scale.',
+                      'Measure attention, reach, and conversion indicators.',
+                      'Extract evidence-backed selection findings.',
+                      'Recombine the strongest page traits.',
+                      'Retest the evolved candidate against the field.',
                     ][index]
                   }
                 </p>
@@ -359,7 +367,7 @@ export default function Home() {
                 </h2>
               </div>
               <p className="max-w-sm text-sm leading-relaxed text-graphite-soft">
-                These are not cosmetic headline swaps. Each variant changes the psychological
+                These are not cosmetic headline swaps. Each candidate changes the psychological
                 lever, CTA style, page structure, and expected audience fit.
               </p>
             </div>
@@ -379,8 +387,8 @@ export default function Home() {
                         className="h-2.5 w-2.5 rounded-full"
                         style={{ backgroundColor: variant.theme.accent }}
                       />
-                      <span className="font-mono text-xs uppercase tracking-wider text-graphite-soft">
-                        Variant {variant.id}
+                  <span className="font-mono text-xs uppercase tracking-wider text-graphite-soft">
+                        Gen 0 Candidate {variant.id}
                       </span>
                     </div>
                     <span className="font-mono text-xs text-graphite-soft transition-transform group-hover:translate-x-0.5">
@@ -399,9 +407,9 @@ export default function Home() {
 
                   <div className="mt-5 border-t border-hairline pt-4">
                     <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-graphite-soft">
-                      Expected audience fit
+                      Expected cohort fit
                     </p>
-                    <p className="mt-1 text-sm font-medium">{PERSONA_FIT[variant.id]}</p>
+                  <p className="mt-1 text-sm font-medium">{PERSONA_FIT[variant.id]}</p>
                   </div>
                 </Link>
               ))}
@@ -412,13 +420,13 @@ export default function Home() {
         <section className="mx-auto max-w-6xl px-6 py-16">
           <div className="max-w-2xl">
             <p className="font-mono text-xs uppercase tracking-[0.16em] text-[#3457d5]">
-              Simulated users, not generic traffic
+              Behavioral cohorts, not generic traffic
             </p>
             <h2 className="mt-3 font-display text-3xl font-medium tracking-tight md:text-4xl">
-              Every visit has a motivation, an attention budget, and a reason to leave.
+              Every cohort visit has a motivation, an attention budget, and a reason to leave.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-graphite-soft">
-              GrowthOS models distinct behaviors rather than treating every click as identical.
+              GrowthOS models distinct behavioral cohorts rather than treating every click as identical.
               This makes the output useful for learning which message works for whom.
             </p>
           </div>
@@ -442,18 +450,18 @@ export default function Home() {
             <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
               <div>
                 <p className="font-mono text-xs uppercase tracking-[0.16em] text-[#aab8ff]">
-                  Explainability built in
+                Selection Findings
                 </p>
                 <h2 className="mt-3 font-display text-4xl font-medium tracking-tight md:text-5xl">
-                  What the Engine Learned Overnight
+                  What the Engine Selected Overnight
                 </h2>
                 <p className="mt-5 max-w-md text-base leading-relaxed text-white/60">
                   The system does not just name a winner. It turns behavioral patterns into
-                  specific page changes, then reruns the experiment to validate the recommendation.
+                  evidence-backed page changes, then runs a validation retest.
                 </p>
 
                 <Link href="/lab" className="mt-7 inline-block">
-                  <Button variant="secondary">Watch the full evolution →</Button>
+                  <Button variant="secondary">Open Page Evolution Map →</Button>
                 </Link>
               </div>
 
@@ -480,7 +488,7 @@ export default function Home() {
                         </div>
                         <p className="mt-3 font-display text-lg font-medium">{insight.finding}</p>
                         <p className="mt-2 text-sm leading-relaxed text-white/60">
-                          <span className="font-medium text-white/85">Recommendation:</span>{' '}
+                          <span className="font-medium text-white/85">Recommended action:</span>{' '}
                           {insight.recommendation}
                         </p>
                       </div>
@@ -491,13 +499,13 @@ export default function Home() {
 
                 <div className="rounded-2xl border border-[#9d90ff]/45 bg-[#7c3aed]/20 p-5">
                   <p className="font-mono text-xs uppercase tracking-[0.15em] text-[#c9c2ff]">
-                    Gen 2 decision
+                    Evolved Candidate decision
                   </p>
                   <p className="mt-2 font-display text-xl font-medium">
                     Lead with proof. Preserve urgency after trust. Keep the CTA path short.
                   </p>
                   <p className="mt-2 text-sm text-white/65">
-                    Every inherited section carries provenance so the recommendation remains
+                    Every inherited section carries page lineage so the recommendation remains
                     inspectable, not black-box.
                   </p>
                 </div>
@@ -514,13 +522,13 @@ export default function Home() {
             Stop waiting weeks for landing-page answers.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-graphite-soft">
-            Watch five growth beliefs compete, see the system explain what it learned, and validate
-            the next best version in one continuous loop.
+            Watch five growth beliefs compete, see the system explain what it selected, and run a
+            validation retest in one continuous loop.
           </p>
 
           <div className="mt-8">
             <Link href="/lab">
-              <Button size="lg">▶ Run the growth experiment</Button>
+              <Button size="lg">Run Behavioral Stress Test</Button>
             </Link>
           </div>
 

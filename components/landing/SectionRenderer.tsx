@@ -80,7 +80,7 @@ export function SectionRenderer({
   return (
     <div className="relative">
       <div className="absolute right-4 top-2 z-10 rounded-full border border-hairline bg-surface/90 backdrop-blur px-3 py-1 text-[11px] font-mono text-graphite-soft">
-        from {section.provenance.parent} — {section.provenance.reason}
+        Page Lineage: {section.provenance.parent} — {section.provenance.reason}
       </div>
       {body}
     </div>

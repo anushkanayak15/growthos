@@ -4,12 +4,12 @@ export const STEPS = ['pages', 'simulating', 'metrics', 'winner', 'evolve', 'val
 export type Step = (typeof STEPS)[number];
 
 const STEP_LABEL: Record<Step, string> = {
-  pages: 'Pages',
-  simulating: 'Simulate',
-  metrics: 'Metrics',
-  winner: 'Winner',
-  evolve: 'Evolve',
-  validate: 'Gen 2',
+  pages: 'Gen 0',
+  simulating: 'Stress Test',
+  metrics: 'Attention',
+  winner: 'Findings',
+  evolve: 'Map',
+  validate: 'Retest',
 };
 
 export function PipelineStepper({ current }: { current: Step }) {

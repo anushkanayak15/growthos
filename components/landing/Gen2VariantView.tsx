@@ -27,9 +27,9 @@ export function Gen2VariantView() {
     return (
       <div className="min-h-screen flex items-center justify-center px-6">
         <div className="text-center max-w-sm">
-          <p className="font-display text-lg font-medium mb-2">Gen 2 hasn&apos;t been evolved yet</p>
+          <p className="font-display text-lg font-medium mb-2">The Evolved Candidate is not ready yet</p>
           <p className="text-sm text-graphite-soft mb-4">
-            Run the growth experiment and evolve a Gen 2 page in the lab first — it&apos;s generated fresh from that run&apos;s evidence.
+            Run the behavioral stress test and open the Page Evolution Map first — it&apos;s generated fresh from that run&apos;s evidence.
           </p>
           <Link href="/lab" className="text-sm font-medium" style={{ color: 'var(--accent)' }}>
             ← back to lab

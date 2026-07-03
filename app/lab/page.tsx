@@ -106,7 +106,7 @@ export default function LabPage() {
           </Link>
           <span className="text-graphite-soft text-sm">▸ Scholé AI experiment</span>
           <span className="hidden max-w-xs font-mono text-[10px] uppercase tracking-wider text-graphite-soft md:inline">
-            Synthetic experiment data for demonstration — not real customer outcomes.
+            Synthetic behavioral experiment data for demonstration — not real customer outcomes.
           </span>
           <button
             onClick={rerollSeed}
@@ -123,9 +123,9 @@ export default function LabPage() {
       <main className="max-w-5xl mx-auto px-6 py-10 space-y-10">
         {step === 'pages' && (
           <section>
-            <h1 className="font-display text-2xl font-medium mb-1">Five hypotheses</h1>
+            <h1 className="font-display text-2xl font-medium mb-1">Gen 0 Candidates</h1>
             <p className="text-sm text-graphite-soft mb-6 max-w-2xl">
-              Each variant is a config-driven landing page testing one growth principle for Scholé AI. Click through any of them, then run the experiment to simulate 10,000 persona-driven visitors per page.
+              Each growth hypothesis is a config-driven landing page testing one conversion principle for Scholé AI. Click through any of them, then run the behavioral stress test across 10,000 synthetic cohort visits per page.
             </p>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {VARIANTS.map((v) => (
@@ -134,7 +134,7 @@ export default function LabPage() {
             </div>
             <div className="mt-8 text-center">
               <Button size="lg" onClick={runExperiment}>
-                ▶ Run Growth Experiment
+                Run Behavioral Stress Test
               </Button>
             </div>
           </section>
@@ -146,14 +146,14 @@ export default function LabPage() {
 
         {step === 'metrics' && gen1Metrics && (
           <section>
-            <h1 className="font-display text-2xl font-medium mb-1">Dashboard</h1>
+            <h1 className="font-display text-2xl font-medium mb-1">Attention Profiler</h1>
             <p className="text-sm text-graphite-soft mb-6">
-              {gen1Results!.reduce((s, r) => s + r.users.length, 0).toLocaleString()} simulated visitors across 5 variants, seed {seed}.
+              {gen1Results!.reduce((s, r) => s + r.users.length, 0).toLocaleString()} synthetic cohort visits across 5 Gen 0 Candidates, seed {seed}.
             </p>
             <MetricsDashboard metrics={gen1Metrics} variants={VARIANTS} />
             <div className="mt-8 text-center">
               <Button size="lg" onClick={() => setStep('winner')}>
-                Reveal Winner
+                Reveal Selection Findings
               </Button>
             </div>
           </section>
@@ -161,20 +161,20 @@ export default function LabPage() {
 
         {step === 'winner' && winner && gen1Metrics && (
           <section className="text-center">
-            <p className="font-mono text-xs uppercase tracking-wider text-graphite-soft mb-2">Gen 1 champion</p>
+            <p className="font-mono text-xs uppercase tracking-wider text-graphite-soft mb-2">Gen 0 champion</p>
             <div className="inline-flex items-center gap-3 mb-2">
               <h1 className="font-display text-4xl font-medium">
-                Variant {winner.variantId} — {VARIANTS.find((v) => v.id === winner.variantId)?.name}
+                Candidate {winner.variantId} — {VARIANTS.find((v) => v.id === winner.variantId)?.name}
               </h1>
             </div>
             <p className="text-graphite-soft mb-8">
-              Growth Fitness Score {winner.fitness?.toFixed(1)} · {(winner.conversion.point * 100).toFixed(1)}% conversion
+              Fitness Score {winner.fitness?.toFixed(1)} · {(winner.conversion.point * 100).toFixed(1)}% conversion
             </p>
 
             <Card className="text-left max-w-3xl mx-auto p-5">
-              <p className="font-display text-xl font-medium">What the Engine Learned Overnight</p>
+              <p className="font-display text-xl font-medium">Selection Findings</p>
               <p className="text-sm text-graphite-soft mb-4">
-                Not just which page won — what behavior changed the next version.
+                Not just which page won — what behavior changed the Evolved Candidate.
               </p>
               <div className="space-y-3">
                 {evoPreviewInsights(gen1Metrics).map((insight, i) => (
@@ -185,7 +185,7 @@ export default function LabPage() {
 
             <div className="mt-8">
               <Button size="lg" onClick={runEvolution}>
-                Evolve to Gen 2 →
+                Open Page Evolution Map →
               </Button>
             </div>
           </section>
@@ -193,10 +193,9 @@ export default function LabPage() {
 
         {step === 'evolve' && evoResult && (
           <section>
-            <h1 className="font-display text-2xl font-medium mb-1">Evolution</h1>
+            <h1 className="font-display text-2xl font-medium mb-1">Page Evolution Map</h1>
             <p className="text-sm text-graphite-soft mb-6 max-w-2xl">
-              Gen 2 is assembled section by section from the strongest performer of each type, re-ordered by dwell, then
-              lightly mutated. Every section is tagged with its provenance.
+              The Evolved Candidate is assembled section by section from the strongest performer of each type, re-ordered by attention, then lightly adjusted. Every section is tagged with page lineage.
             </p>
 
             <UrgencyTradeoffCard insight={evoResult.insights.find((insight) => insight.principle === 'urgency')} />
@@ -212,7 +211,7 @@ export default function LabPage() {
             </Card>
 
             <Card className="p-5 mb-6">
-              <p className="font-display text-lg font-medium mb-3">All insights detected</p>
+              <p className="font-display text-lg font-medium mb-3">Selection Findings</p>
               <div className="space-y-3">
                 {evoResult.insights.map((insight, i) => (
                   <InsightCard key={i} insight={insight} index={i} />
@@ -222,7 +221,7 @@ export default function LabPage() {
 
             {evoResult.mutations.length > 0 && (
               <Card className="p-5 mb-6">
-                <p className="font-display text-lg font-medium mb-3">Mutations applied</p>
+                <p className="font-display text-lg font-medium mb-3">Evidence-backed adjustments</p>
                 <div className="space-y-2">
                   {evoResult.mutations.map((m, i) => (
                     <div key={i} className="text-sm border-l-2 pl-3" style={{ borderColor: 'var(--accent)' }}>
@@ -240,11 +239,11 @@ export default function LabPage() {
             <div className="text-center flex items-center justify-center gap-3">
               <Link href="/variant/G2" target="_blank">
                 <Button variant="secondary" size="lg">
-                  Preview Gen 2 page ↗
+                  Preview Evolved Candidate ↗
                 </Button>
               </Link>
               <Button size="lg" onClick={runValidation}>
-                Validate Gen 2 →
+                Run Validation Retest →
               </Button>
             </div>
           </section>
@@ -252,9 +251,9 @@ export default function LabPage() {
 
         {step === 'validate' && validationMetrics && allVariantsWithGen2 && (
           <section>
-            <h1 className="font-display text-2xl font-medium mb-1">Gen 2 vs Gen 1 champion</h1>
+            <h1 className="font-display text-2xl font-medium mb-1">Validation Retest</h1>
             <p className="text-sm text-graphite-soft mb-6">
-              Fresh seed, full rerun including Gen 2 — this closes the loop honestly rather than reusing Gen 1&apos;s numbers.
+              Fresh seed, full rerun including the Evolved Candidate — this closes the loop honestly rather than reusing Gen 0 numbers.
             </p>
             <Card className="p-5 mb-6">
               <MetricsDashboard metrics={validationMetrics} variants={allVariantsWithGen2} />
@@ -281,7 +280,7 @@ export default function LabPage() {
             )}
             <div className="mt-6 text-center">
               <Link href="/variant/G2" target="_blank">
-                <Button size="lg">View the winning page ↗</Button>
+                <Button size="lg">View Evolved Candidate ↗</Button>
               </Link>
             </div>
           </section>
@@ -313,7 +312,7 @@ function BeforeAfterArtifact({
       <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
         <div>
           <p className="font-mono text-xs uppercase tracking-wider text-graphite-soft">Before → After</p>
-          <h2 className="mt-1 font-display text-2xl font-medium">Gen 1 champion vs Gen 2</h2>
+          <h2 className="mt-1 font-display text-2xl font-medium">Gen 0 Champion vs Evolved Candidate</h2>
         </div>
         <Badge tone={fitnessDelta >= 0 ? 'good' : 'neutral'}>
           {fitnessDelta >= 0 ? '+' : ''}
@@ -325,18 +324,18 @@ function BeforeAfterArtifact({
         <div className="rounded-xl border border-hairline bg-background p-4">
           <p className="font-mono text-[10px] uppercase tracking-wider text-graphite-soft">Before</p>
           <p className="mt-2 font-display text-lg font-medium">
-            Variant {champion.variantId} — {championVariant?.name ?? champion.variantId}
+            Candidate {champion.variantId} — {championVariant?.name ?? champion.variantId}
           </p>
           <p className="mt-1 text-sm text-graphite-soft">
-            Growth Fitness Score {champion.fitness?.toFixed(1)}
+            Fitness Score {champion.fitness?.toFixed(1)}
           </p>
         </div>
         <div className="hidden items-center px-1 font-mono text-xl text-graphite-soft md:flex">→</div>
         <div className="rounded-xl border border-accent/25 bg-accent-soft/50 p-4">
           <p className="font-mono text-[10px] uppercase tracking-wider text-accent">After</p>
-          <p className="mt-2 font-display text-lg font-medium">Gen 2 — The Evolved Page</p>
+          <p className="mt-2 font-display text-lg font-medium">Evolved Candidate</p>
           <p className="mt-1 text-sm text-graphite-soft">
-            Growth Fitness Score {gen2.fitness?.toFixed(1)}
+            Fitness Score {gen2.fitness?.toFixed(1)}
           </p>
         </div>
       </div>
@@ -413,7 +412,7 @@ function UrgencyTradeoffCard({ insight }: { insight?: Insight }) {
       </div>
       <p className="mt-4 text-sm text-graphite">{insight.evidence}</p>
       <p className="mt-3 text-sm font-medium text-graphite">
-        Decision: keep urgency, but place it after social proof in Gen 2.
+        Decision: keep urgency, but place it after social proof in the Evolved Candidate.
       </p>
     </Card>
   );
@@ -429,14 +428,14 @@ function evoPreviewInsights(metrics: VariantMetrics[]) {
       principle: 'cta-placement' as const,
       evidence: `${top.variantId} converts at ${(top.conversion.point * 100).toFixed(1)}%, the best of any variant tested`,
       magnitude: top.conversion.point,
-      action: `Gen 2 will borrow ${top.variantId}'s highest-converting elements`,
+      action: `The Evolved Candidate will borrow ${top.variantId}'s highest-converting elements`,
       sourceVariant: top.variantId,
     },
     {
       principle: 'friction' as const,
       evidence: `${bottom.variantId} trails the field at ${(bottom.conversion.point * 100).toFixed(1)}% conversion despite ${bottom.avgTimeOnPage.toFixed(0)}s average time on page`,
       magnitude: 1 - bottom.conversion.point,
-      action: `Gen 2 will cut or compress ${bottom.variantId}'s weakest sections`,
+      action: `The Evolved Candidate will cut or compress ${bottom.variantId}'s weakest sections`,
       sourceVariant: bottom.variantId,
     },
   ];
@@ -452,8 +451,8 @@ function ValidationVerdict({ metrics }: { metrics: VariantMetrics[] }) {
     <div className="text-center">
       <Badge tone={overtook ? 'good' : 'neutral'}>
         {overtook
-          ? `Gen 2 overtakes ${bestParent.variantId}: ${gen2.fitness?.toFixed(1)} vs ${bestParent.fitness?.toFixed(1)} fitness`
-          : `Gen 2 (${gen2.fitness?.toFixed(1)}) is close behind ${bestParent.variantId} (${bestParent.fitness?.toFixed(1)}) this run`}
+          ? `Evolved Candidate overtakes ${bestParent.variantId}: ${gen2.fitness?.toFixed(1)} vs ${bestParent.fitness?.toFixed(1)} fitness`
+          : `Evolved Candidate (${gen2.fitness?.toFixed(1)}) is close behind ${bestParent.variantId} (${bestParent.fitness?.toFixed(1)}) this run`}
       </Badge>
     </div>
   );

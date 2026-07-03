@@ -57,7 +57,7 @@ export function FitnessChart({ metrics, variants }: { metrics: VariantMetrics[];
                   <p className="font-semibold">
                     {d.variantId} — {d.name}
                   </p>
-                  <p>fitness: {d.fitness}</p>
+                  <p>fitness score: {d.fitness}</p>
                   <p>
                     conversion: {d.conversionPct}% ± {d.conversionErr}
                   </p>
