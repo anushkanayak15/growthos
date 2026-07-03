@@ -254,6 +254,13 @@ export default function LabPage() {
               <MetricsDashboard metrics={validationMetrics} variants={allVariantsWithGen2} />
             </Card>
             <ValidationVerdict metrics={validationMetrics} />
+            {evoResult && (
+              <BeforeAfterArtifact
+                metrics={validationMetrics}
+                variants={allVariantsWithGen2}
+                evolution={evoResult}
+              />
+            )}
             <div className="mt-6 text-center">
               <Link href="/variant/G2" target="_blank">
                 <Button size="lg">View the winning page ↗</Button>
@@ -264,6 +271,112 @@ export default function LabPage() {
       </main>
     </div>
   );
+}
+
+function BeforeAfterArtifact({
+  metrics,
+  variants,
+  evolution,
+}: {
+  metrics: VariantMetrics[];
+  variants: Variant[];
+  evolution: EvolutionResult;
+}) {
+  const gen2 = metrics.find((m) => m.variantId === 'G2');
+  const champion = [...metrics.filter((m) => m.variantId !== 'G2')].sort((a, b) => (b.fitness ?? 0) - (a.fitness ?? 0))[0];
+  if (!gen2 || !champion) return null;
+
+  const championVariant = variants.find((v) => v.id === champion.variantId);
+  const fitnessDelta = (gen2.fitness ?? 0) - (champion.fitness ?? 0);
+  const changes = evidenceBackedChanges(evolution);
+
+  return (
+    <Card className="mt-6 border-accent/25 p-5">
+      <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-wider text-graphite-soft">Before → After</p>
+          <h2 className="mt-1 font-display text-2xl font-medium">Gen 1 champion vs Gen 2</h2>
+        </div>
+        <Badge tone={fitnessDelta >= 0 ? 'good' : 'neutral'}>
+          {fitnessDelta >= 0 ? '+' : ''}
+          {fitnessDelta.toFixed(1)} fitness
+        </Badge>
+      </div>
+
+      <div className="mt-5 grid gap-3 md:grid-cols-[1fr_auto_1fr] md:items-stretch">
+        <div className="rounded-xl border border-hairline bg-background p-4">
+          <p className="font-mono text-[10px] uppercase tracking-wider text-graphite-soft">Before</p>
+          <p className="mt-2 font-display text-lg font-medium">
+            Variant {champion.variantId} — {championVariant?.name ?? champion.variantId}
+          </p>
+          <p className="mt-1 text-sm text-graphite-soft">
+            Growth Fitness Score {champion.fitness?.toFixed(1)}
+          </p>
+        </div>
+        <div className="hidden items-center px-1 font-mono text-xl text-graphite-soft md:flex">→</div>
+        <div className="rounded-xl border border-accent/25 bg-accent-soft/50 p-4">
+          <p className="font-mono text-[10px] uppercase tracking-wider text-accent">After</p>
+          <p className="mt-2 font-display text-lg font-medium">Gen 2 — The Evolved Page</p>
+          <p className="mt-1 text-sm text-graphite-soft">
+            Growth Fitness Score {gen2.fitness?.toFixed(1)}
+          </p>
+        </div>
+      </div>
+
+      {changes.length > 0 && (
+        <div className="mt-5 grid gap-3 md:grid-cols-3">
+          {changes.map((change) => (
+            <div key={change.label} className="rounded-xl border border-hairline bg-surface p-3">
+              <p className="font-display text-sm font-medium">{change.label}</p>
+              <p className="mt-1 text-xs leading-relaxed text-graphite-soft">{change.evidence}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </Card>
+  );
+}
+
+function evidenceBackedChanges(evolution: EvolutionResult) {
+  const changes: { label: string; evidence: string }[] = [];
+  const urgencyInsight = evolution.insights.find((insight) => insight.principle === 'urgency');
+  const socialProof = evolution.gen2.sections.find((section) => section.type === 'socialProof');
+  const urgency = evolution.gen2.sections.find((section) => section.type === 'urgencyBar');
+  const compression = evolution.mutations.find((mutation) =>
+    /items|compress|cut|short/i.test(`${mutation.field} ${mutation.reason}`)
+  );
+
+  if (socialProof?.provenance) {
+    changes.push({
+      label: 'Proof moved earlier',
+      evidence: `From ${socialProof.provenance.parent}: ${socialProof.provenance.reason}`,
+    });
+  }
+
+  if (urgency && urgencyInsight) {
+    changes.push({
+      label: 'Urgency sequenced after trust',
+      evidence: urgencyInsight.evidence,
+    });
+  }
+
+  if (compression) {
+    changes.push({
+      label: 'Path to CTA shortened',
+      evidence: `${compression.before} → ${compression.after}; ${compression.reason}`,
+    });
+  }
+
+  for (const section of evolution.gen2.sections) {
+    if (changes.length >= 3) break;
+    if (!section.provenance || section.type === 'socialProof' || section.type === 'urgencyBar') continue;
+    changes.push({
+      label: `${section.type} carried forward`,
+      evidence: `From ${section.provenance.parent}: ${section.provenance.reason}`,
+    });
+  }
+
+  return changes.slice(0, 3);
 }
 
 function UrgencyTradeoffCard({ insight }: { insight?: Insight }) {
