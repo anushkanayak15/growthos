@@ -9,7 +9,9 @@ export function VariantPageBody({ variant }: { variant: Variant }) {
 
   return (
     <div className="min-h-screen bg-white">
-      {hasUrgencyBar && <SectionRenderer section={variant.sections[0]} theme={variant.theme} />}
+      {hasUrgencyBar && (
+        <SectionRenderer section={variant.sections[0]} theme={variant.theme} variantId={variant.id} />
+      )}
       <div className="flex items-center justify-between px-6 py-3 border-b border-hairline bg-background/80 backdrop-blur sticky top-0 z-30">
         <Link href="/lab" className="font-mono text-xs text-graphite-soft hover:text-graphite">
           ← back to lab
@@ -20,7 +22,13 @@ export function VariantPageBody({ variant }: { variant: Variant }) {
         </div>
       </div>
       {bodySections.map((section) => (
-        <SectionRenderer key={section.id} section={section} theme={variant.theme} showProvenance />
+        <SectionRenderer
+          key={section.id}
+          section={section}
+          theme={variant.theme}
+          variantId={variant.id}
+          showProvenance
+        />
       ))}
     </div>
   );
