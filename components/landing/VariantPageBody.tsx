@@ -16,6 +16,9 @@ export function VariantPageBody({ variant }: { variant: Variant }) {
         <Link href="/lab" className="font-mono text-xs text-graphite-soft hover:text-graphite">
           ← back to lab
         </Link>
+        <span className="hidden font-mono text-[10px] uppercase tracking-wider text-graphite-soft md:inline">
+          Synthetic experiment data for demonstration — not real customer outcomes.
+        </span>
         <div className="flex items-center gap-2">
           <Badge tone="accent">Variant {variant.id}</Badge>
           <span className="font-display text-sm font-medium">{variant.name}</span>

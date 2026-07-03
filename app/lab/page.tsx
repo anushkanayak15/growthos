@@ -6,7 +6,7 @@ import confetti from 'canvas-confetti';
 import { VARIANTS, type Variant } from '@/lib/variants';
 import { simulateAll, simulateVariant, type VariantSimulationResult } from '@/lib/simulation';
 import { computeVariantMetrics, computeFitnessScores, allSectionIdsFor, type VariantMetrics } from '@/lib/metrics';
-import { evolve, type EvolutionResult } from '@/lib/evolution';
+import { evolve, type EvolutionResult, type Insight } from '@/lib/evolution';
 import { PipelineStepper, type Step } from '@/components/lab/PipelineStepper';
 import { VariantThumb } from '@/components/lab/VariantThumb';
 import { SimulationPlayback } from '@/components/lab/SimulationPlayback';
@@ -105,6 +105,9 @@ export default function LabPage() {
             GrowthOS
           </Link>
           <span className="text-graphite-soft text-sm">▸ Scholé AI experiment</span>
+          <span className="hidden max-w-xs font-mono text-[10px] uppercase tracking-wider text-graphite-soft md:inline">
+            Synthetic experiment data for demonstration — not real customer outcomes.
+          </span>
           <button
             onClick={rerollSeed}
             disabled={step !== 'pages'}
@@ -150,7 +153,7 @@ export default function LabPage() {
             <MetricsDashboard metrics={gen1Metrics} variants={VARIANTS} />
             <div className="mt-8 text-center">
               <Button size="lg" onClick={() => setStep('winner')}>
-                Reveal Winner 🎉
+                Reveal Winner
               </Button>
             </div>
           </section>
@@ -160,7 +163,6 @@ export default function LabPage() {
           <section className="text-center">
             <p className="font-mono text-xs uppercase tracking-wider text-graphite-soft mb-2">Gen 1 champion</p>
             <div className="inline-flex items-center gap-3 mb-2">
-              <span className="text-4xl">👑</span>
               <h1 className="font-display text-4xl font-medium">
                 Variant {winner.variantId} — {VARIANTS.find((v) => v.id === winner.variantId)?.name}
               </h1>
@@ -169,14 +171,17 @@ export default function LabPage() {
               Growth Fitness Score {winner.fitness?.toFixed(1)} · {(winner.conversion.point * 100).toFixed(1)}% conversion
             </p>
 
-            <div className="text-left max-w-2xl mx-auto">
-              <p className="font-display text-lg font-medium mb-3">What the AI learned</p>
+            <Card className="text-left max-w-3xl mx-auto p-5">
+              <p className="font-display text-xl font-medium">What the Engine Learned Overnight</p>
+              <p className="text-sm text-graphite-soft mb-4">
+                Not just which page won — what behavior changed the next version.
+              </p>
               <div className="space-y-3">
                 {evoPreviewInsights(gen1Metrics).map((insight, i) => (
                   <InsightCard key={i} insight={insight} index={i} />
                 ))}
               </div>
-            </div>
+            </Card>
 
             <div className="mt-8">
               <Button size="lg" onClick={runEvolution}>
@@ -193,6 +198,8 @@ export default function LabPage() {
               Gen 2 is assembled section by section from the strongest performer of each type, re-ordered by dwell, then
               lightly mutated. Every section is tagged with its provenance.
             </p>
+
+            <UrgencyTradeoffCard insight={evoResult.insights.find((insight) => insight.principle === 'urgency')} />
 
             <Card className="p-5 mb-6">
               <EvolutionTree gen2={evoResult.gen2} variants={VARIANTS} />
@@ -256,6 +263,28 @@ export default function LabPage() {
         )}
       </main>
     </div>
+  );
+}
+
+function UrgencyTradeoffCard({ insight }: { insight?: Insight }) {
+  if (!insight) return null;
+
+  return (
+    <Card className="mb-6 border-warn/30 bg-warn/5 p-5">
+      <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-wider text-warn">Tradeoff detected</p>
+          <p className="mt-2 font-display text-xl font-medium text-graphite">
+            Urgency increased conversion for Last-Minute Students, but reduced Skeptic trust.
+          </p>
+        </div>
+        <div className="h-2 w-2 rounded-full bg-warn md:mt-2" />
+      </div>
+      <p className="mt-4 text-sm text-graphite">{insight.evidence}</p>
+      <p className="mt-3 text-sm font-medium text-graphite">
+        Decision: keep urgency, but place it after social proof in Gen 2.
+      </p>
+    </Card>
   );
 }
 

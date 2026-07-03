@@ -100,6 +100,9 @@ export default function Home() {
             <Badge tone="accent" className="mb-5">
               Product under test: Scholé AI
             </Badge>
+            <p className="mb-4 max-w-xl font-mono text-[11px] uppercase tracking-[0.14em] text-graphite-soft">
+              Synthetic experiment data for demonstration — not real customer outcomes.
+            </p>
 
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.18em] text-graphite-soft">
               Autonomous experimentation for growth teams
@@ -442,7 +445,7 @@ export default function Home() {
                   Explainability built in
                 </p>
                 <h2 className="mt-3 font-display text-4xl font-medium tracking-tight md:text-5xl">
-                  🧠 What the AI learned overnight
+                  What the Engine Learned Overnight
                 </h2>
                 <p className="mt-5 max-w-md text-base leading-relaxed text-white/60">
                   The system does not just name a winner. It turns behavioral patterns into
